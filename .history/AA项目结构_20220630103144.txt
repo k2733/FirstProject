@@ -1,0 +1,9 @@
+.venv
+app #存放管理路由
+    app.py
+    __init__.py
+    users #用于管理用户功能的路由
+        module.py  #用于连接数据库，定义mysql数据的表
+        view.py  #管理路由视图文件
+
+settings.py  #配置数据库参数

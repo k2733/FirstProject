@@ -1,3 +1,4 @@
+from unicodedata import name
 import cx_Oracle
 import pandas as pd
 # coding:utf-8
@@ -16,10 +17,9 @@ file_dict = {}
 #改（update）
 
 class ConnO():
-    def __init__(self):
-        tns = cx_Oracle.makedsn("dx.huangyi.cn","1521","orcl")  #监听Oracle数据库
-        # 建立和数据库系统的连接
-        conn = cx_Oracle.connect("C##VCC","VCC",tns)   #连接数据库
+    tns = cx_Oracle.makedsn("dx.huangyi.cn","1521","orcl")  #监听Oracle数据库
+    # 建立和数据库系统的连接
+    conn = cx_Oracle.connect("C##VCC","VCC",tns)   #连接数据库
 
     #查询数据
     def read_data():

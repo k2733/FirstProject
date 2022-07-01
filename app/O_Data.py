@@ -15,51 +15,55 @@ file_dict = {}
 
 #改（update）
 
-class ConnO():
-    def __init__(self):
-        tns = cx_Oracle.makedsn("dx.huangyi.cn","1521","orcl")  #监听Oracle数据库
-        # 建立和数据库系统的连接
-        conn = cx_Oracle.connect("C##VCC","VCC",tns)   #连接数据库
+class operate_OracleDB():
+    def __init__(self) :
+        self.tns = cx_Oracle.makedsn("dx.huangyi.cn","1521","orcl")
+        self.conn = cx_Oracle.connect("C##VCC","VCC",self.tns)
 
-    #查询数据
+    # def connect_DB():
+    #     tns = cx_Oracle.makedsn("dx.huangyi.cn","1521","orcl")
+    #     conn = cx_Oracle.connect("C##VCC","VCC",tns)
+    #     return tns,conn
+
+    #!读取数据库数据
     def read_data():
-        cursor = ConnO.conn.cursor()
+        tns = cx_Oracle.makedsn("dx.huangyi.cn","1521","orcl")
+        conn = cx_Oracle.connect("C##VCC","VCC",tns)
+        cursor = conn.cursor()
         cursor.execute("select * from tb_user")
-        #读取整个表格
-        one = cursor.fetchall()
-        file1 = pd.DataFrame(one)
-        file1.columns = ['ID','user','password']
-        return print(file1)
+        file_dict = dict(cursor.fetchall())         #!查询结果转化为字典格式
+        return file_dict
+
+tns = cx_Oracle.makedsn("dx.huangyi.cn","1521","orcl")
+conn = cx_Oracle.connect("C##VCC","VCC",tns)
 
     #插入新值
-    def inster_data(i,user,password):
-        cursor = ConnO.conn.cursor()
-        sql = "insert into tb_user values(%d,'%s','%s')" %i %user %password
+def inster_data(i,user,password):
+        cursor = conn.cursor()
+        sql = "insert into tb_user values('%s','%s')" %user %password
         try:
             cursor.execute(sql)
-            ConnO.conn.commit() 
+            conn.commit() 
             print("数据插入成功")
         except:
-            ConnO.conn.rollback() #发生错误时回滚
+            conn.rollback() #发生错误时回滚
             print("语句执行错误")
-        ConnO.conn.close()
+        conn.close()
 
     #更新数据
-    def updata_data():
-        cursor = ConnO.conn.cursor()
-
-        sql = "update TEST123 set XXSCORE =  XXSCORE+100 WHERE XXNAME = '%s'"%('马云')
+def updata_data(username,password):
+        cursor = conn.cursor()
+        #更新密码，
+        sql = "update tb_user set passward = '%s' WHERE user = '%s'" %password %username
         try:
             cursor.execute(sql)
-            ConnO.conn.commit() 
+            conn.commit() 
             print("数据更新成功")
         except:
-            ConnO.conn.rollback() #发生错误时回滚
+            conn.rollback() #发生错误时回滚
             print("语句执行错误")
-        ConnO.conn.close()
+        conn.close()
 
         
-
-
 if __name__ == "__main__":
-    ConnO.read_data()
+    print(operate_OracleDB.read_data())

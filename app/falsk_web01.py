@@ -1,11 +1,16 @@
 #coding:utf-8
-
+import cx_Oracle
 from flask import Flask,render_template,request,redirect
 import fileutils
+import config
 # 引入file_dict用户列表
 fileutils.file_read()
 
 app = Flask(__name__)
+app.config.from_object(config)
+
+# tns = cx_Oracle.makedsn("dx.huangyi.cn","1521","orcl")  #监听Oracle数据库
+# conn = cx_Oracle.connect("C##VCC","VCC",tns)   #连接数据库
 
 @app.route('/')
 def index():
@@ -28,9 +33,9 @@ def login():
         if username == "admin" and password == "admin":
             return redirect('/list')
         else:
-            error_msg = "username or password is wrong"
+            error_msg = "账户不存在或密码错误!!!"
     else:
-        error_msg = 'need username and password'
+        error_msg = '请输入账号和密码！'
 
     return render_template('login.html', error_msg = error_msg)
 
@@ -56,7 +61,7 @@ def updateaction():
     username = params.get('username')
     password = params.get('password')
     fileutils.file_dict[username] = password
-    fileutils.file_write()
+    fileutils.file_write(username,password)
     return redirect('/list/')
 
 
@@ -73,15 +78,37 @@ def addaction():
     if username in fileutils.file_dict:
         return redirect('/list/')
     else:
-        fileutils.file_dict[username] = password
-        fileutils.file_write()
-        return redirect('/list/')
+        tns = cx_Oracle.makedsn("dx.huangyi.cn","1521","orcl")  #监听Oracle数据库
+        conn = cx_Oracle.connect("C##VCC","VCC",tns)   #连接数据库
+        cursor = conn.cursor()
+        sql = "insert into tb_user values('%s','%s')" %(username,password)
+        try:
+                cursor.execute(sql)
+                conn.commit() 
+                print("数据更新成功")
+        except:
+                conn.rollback() #发生错误时回滚
+                print("语句执行错误")
+        conn.close()
+        return  redirect('/list/')
 
 @app.route('/delete/')
 def delete():
     username = request.args.get('username')
-    fileutils.file_dict.pop(username)
-    fileutils.file_write()
+    # del fileutils.file_dict[username]
+    # fileutils.file_dict.pop(username)
+    tns = cx_Oracle.makedsn("dx.huangyi.cn","1521","orcl")  #监听Oracle数据库
+    conn = cx_Oracle.connect("C##VCC","VCC",tns)   #连接数据库
+    cursor = conn.cursor()
+    sql = "delete from tb_user where name = '%s'"  %username
+    try:
+            cursor.execute(sql)
+            conn.commit() 
+            print("数据更新成功")
+    except:
+            conn.rollback() #发生错误时回滚
+            print("语句执行错误")
+    conn.close()
     return redirect('/list/')
 
 if __name__ == "__main__":

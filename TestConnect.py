@@ -1,4 +1,5 @@
 import cx_Oracle
+import pandas as pd
 
 tns = cx_Oracle.makedsn("dx.huangyi.cn","1521","orcl")  #监听Oracle数据库
 # 建立和数据库系统的连接
@@ -51,7 +52,11 @@ conn = cx_Oracle.connect("C##VCC","VCC",tns)   #连接数据库
 #3.查询数据
 cursor = conn.cursor()
 cursor.execute("select * from tb_user")
+# cursor.execute("ALTER TABLE tb_user DROP COLUMN id")
+# conn.commit()
 #获取一条记录
 one = cursor.fetchall()
-print(one)
+file1 = pd.DataFrame(one)
+file1.columns = ['name','password']
+print(dict(one))
 conn.close()

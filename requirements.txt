@@ -3,3 +3,4 @@ python-dotenv
 flask-sqlalchemy
 cx_Oracle
 pandas
+pymssql

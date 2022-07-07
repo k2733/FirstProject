@@ -1,5 +1,4 @@
 #coding:utf-8
-from sqlalchemy import table
 import MSSQL
 from flask import Flask,render_template,request,redirect
 
@@ -36,7 +35,7 @@ def login():
 
 @app.route('/list/')
 def table_list():
-    sql = 'select * from persons'
+    sql = 'select * from users'
     ms=MSSQL.SqlsvLib()
     table_search = ms.ExecSqlQuery(sql)
     return render_template('list.html', table_list = table_search)
@@ -53,10 +52,10 @@ def update():
 @app.route('/updateaction/', methods = ['POST'])
 def updateaction():
     params = request.args if request.method == 'GET' else request.form
-    iid = int(params.get('id_number'))
-    username = str(params.get('username'))
-    password = str(params.get('password'))
-    sql = "updata persons set name = '%s',password= '%s' where id=%d" %(username,password,iid)
+    idd = int(params.get('id_number'))
+    username = params.get('username')
+    password = params.get('password')
+    sql = "update users set password= '%s',name = '%s' where id=%d " %(password,username,idd)
     ms=MSSQL.SqlsvLib()
     ms.ExecNonQuery(sql)
     return redirect('/list/')
@@ -74,23 +73,23 @@ def addaction():
     password = params.get('password')
 
     ms=MSSQL.SqlsvLib()
-    sql = 'select * from persons'
+    sql = 'select * from users'
     table_search = ms.ExecSqlQuery(sql)
 
     if username in {i[1] for i in table_search}:
         return redirect('/list/')
     else:
-        sql = "insert into persons values(%d,'%s','%s')" %(int(iid),username,password)
+        # sql = "insert into users values(%d,'%s','%s')" %(int(iid),username,password)
+        sql = "insert into users(name,password) values('%s','%s')" %(username,password)
         ms=MSSQL.SqlsvLib()
-        table_search = ms.ExecNonQuery(sql) 
-        # Test_MSSQL_D.MSSOL_add(sql)
+        aa = ms.ExecNonQuery(sql) 
         return  redirect('/list/')
 
 @app.route('/delete/')
 def delete():
     params = request.args if request.method == 'GET' else request.form
     username = params.get('username')
-    sql = "delete from persons where name = '%s'"  %(username)
+    sql = "delete from users where name = '%s'"  %(username)
     ms=MSSQL.SqlsvLib()
     aa = ms.ExecNonQuery(sql)
     return redirect('/list/')

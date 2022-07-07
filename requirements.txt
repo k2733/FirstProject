@@ -4,3 +4,4 @@ flask-sqlalchemy
 cx_Oracle
 pandas
 pymssql
+flask-migrate

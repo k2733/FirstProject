@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+
+    <form action='/updateaction/' method="post">
+        id_number:{{table_list[0]}}<input type="hidden" name="id_number" value="{{table_list[0]}}" />
+        username:{{table_list[1]}} <input type="hidden" name="username" value="{{table_list[1]}}" />
+        password:<input type="text" name="password" value="{{table_list[2]}}" />
+        <input type="submit" value="更新数据">
+    </form>
+</body>
+</html>

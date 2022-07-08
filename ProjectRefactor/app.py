@@ -34,7 +34,12 @@ def set_session():
     session['username'] = 'zhiliao'
     return "session设置成功"
 
-
+@app.route('/get_session')
+def get_session():
+    username = session.get('username')
+    print('username : ' ,username)
+    return 'get session'
+    
 @app.route('/')
 def hello_world():
     return 'Hello World!'

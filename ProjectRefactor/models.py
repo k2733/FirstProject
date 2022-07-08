@@ -8,7 +8,7 @@ class Article(db.Model):
     id = db.Column(db.Integer,primary_key=True,autoincrement=True)
     title = db.Column(db.String(200),nullable=False)
     content = db.Column(db.Text,nullable=False)
-
+    
     #外键：
     #1.外键的数据类型要看所引用的数据类型
     #2.db.ForeignKey("表名.字段名")

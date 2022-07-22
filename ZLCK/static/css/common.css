@@ -1,0 +1,149 @@
+h1, .h1 {
+    position: relative;
+    font-family: Inter,Helvetica,arial,noto-sans-cjk-jp,メイリオ,meiryo,MS Pゴシック,MS PGothic,sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 33px;
+    background: transparent;/*背景透明に*/
+    border-left: solid 10px #E369C6;/*左線*/
+    padding: 0.25em 0.5em;/*上下 左右の余白*/
+    }
+
+h2, .h2{
+    position: relative;
+    font-family: Inter,Helvetica,arial,noto-sans-cjk-jp,メイリオ,meiryo,MS Pゴシック,MS PGothic,sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 29px;
+    background: transparent;/*背景透明に*/
+    border-left: solid 10px #E369C6;/*左線*/
+    padding: 0.25em 0.5em;/*上下 左右の余白*/
+    }
+
+h3, .h3{
+    position: relative;
+    font-family: Inter,Helvetica,arial,noto-sans-cjk-jp,メイリオ,meiryo,MS Pゴシック,MS PGothic,sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 33px;
+    background: transparent;/*背景透明に*/
+    border-left: solid 10px #E369C6;/*左線*/
+    padding: 0.25em 0.5em;/*上下 左右の余白*/
+  }
+h3, .h3{
+    position: relative;
+    font-family: Inter,Helvetica,arial,noto-sans-cjk-jp,メイリオ,meiryo,MS Pゴシック,MS PGothic,sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 33px;
+    background: transparent;/*背景透明に*/
+    border-left: solid 10px #E369C6;/*左線*/
+    padding: 0.25em 0.5em;/*上下 左右の余白*/
+  }
+  
+h5, .h5 {
+    font-family: Inter,Helvetica,arial,noto-sans-cjk-jp,メイリオ,meiryo,MS Pゴシック,MS PGothic,sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.dx-select {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+  -moz-padding-start: calc(0.75rem - 3px);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #373A44;
+  background-color: #F4F4F7;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 16px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.btn-primary {
+  color: #fff;
+  background-color: none;
+  background-image: linear-gradient(to right, #E369C6, #B60081);
+  border:none; 
+  border-radius: 20px;
+}
+
+.btn-primary:hover{
+  color:#fff;
+  background-color:#920067;
+  background-image:none;
+  border:none;
+}
+
+.btn-check:focus+.btn-primary,.btn-primary:focus {
+  color:#fff;
+  background-color:#B60081;
+  background-image:var(--bs-gradient);
+  border-color:#920067;
+  box-shadow:0 0 0 .15rem rgba(182, 0, 129,.25);
+}
+.btn-check:active+.btn-primary,.btn-check:checked+.btn-primary,.btn-primary.active,.btn-primary:active,.show>.btn-primary.dropdown-toggle{
+  color:#fff;
+  background-color:none;
+  background-image:linear-gradient(to right, #E369C6, #B60081);
+  border-color:none;
+}
+
+.btn-check:active+.btn-primary:focus,.btn-check:checked+.btn-primary:focus,.btn-primary.active:focus,.btn-primary:active:focus,.show>.btn-primary.dropdown-toggle:focus{
+  box-shadow:0 0 0 .15rem rgba(182,0,129,.25);
+}
+.btn-primary.disabled,.btn-primary:disabled{
+  color:#fff;
+  background-color:#b60081;
+  background-image:none;
+  border-color:#b60081;
+}
+.btn-secondary{
+  color:#000;
+  background-color:none;
+  background-image:linear-gradient(to bottom, #FDEFD5, #FAD0F2);
+  border:none; 
+  border-radius: 20px;
+}
+
+.btn-secondary:hover{
+  color:#000;
+  background-color:rgba(227,105,178,.50);
+  background-image:none;
+  border:none
+}
+
+.btn-check:focus+.btn-secondary,.btn-secondary:focus{
+  color:#000;
+  background-color:rgba(227,105,178,.50);
+  background-image:inear-gradient(to bottom, #FDEFD5, #FAD0F2);
+  border:none;
+  box-shadow:0 0 0 .15rem rgba(182, 0, 129,.25)
+}
+
+.btn-check:active+.btn-secondary,.btn-check:checked+.btn-secondary,.btn-secondary.active,.btn-secondary:active,.show>.btn-secondary.dropdown-toggle{
+  color:#000;
+  background-color:#000000;
+  background-image:linear-gradient(to bottom, #FDEFD5, #FAD0F2);
+  border:none
+}
+
+.btn-check:active+.btn-secondary:focus,.btn-check:checked+.btn-secondary:focus,.btn-secondary.active:focus,.btn-secondary:active:focus,.show>.btn-secondary.dropdown-toggle:focus{
+  box-shadow:0 0 0 .15rem rgba(182,0,129,.25)
+}
+
+.btn-secondary.disabled,.btn-secondary:disabled{
+  color:#000;
+  background-color:#9e1685;
+  background-image:none;
+  border-color:#916421
+}

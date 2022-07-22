@@ -5,3 +5,4 @@ cx_Oracle
 pandas
 pymssql
 flask-migrate
+flask-mail
